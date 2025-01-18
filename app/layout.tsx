@@ -28,7 +28,12 @@ export default function RootLayout ({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
           {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
         </ThemeProvider>
