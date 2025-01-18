@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import ViewportIndicator from '@/components/dev/ViewportIndicator'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']
@@ -23,12 +24,14 @@ export default function RootLayout ({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
+        <ThemeProvider>
+          {children}
+          {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
+        </ThemeProvider>
       </body>
     </html>
   )
