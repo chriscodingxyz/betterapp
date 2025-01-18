@@ -28,7 +28,7 @@ export default function RootLayout ({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <ViewportIndicator />
+        {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
       </body>
     </html>
   )
