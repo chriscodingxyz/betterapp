@@ -49,6 +49,7 @@ export default function SetupChecks () {
       }
     } catch (error) {
       toast.error('Error testing Supabase connection')
+      console.error(error)
       setChecks(prev => ({
         ...prev,
         supabase: {
@@ -78,6 +79,7 @@ export default function SetupChecks () {
       }
     } catch (error) {
       toast.error('Error testing database connection')
+      console.error(error)
       setChecks(prev => ({
         ...prev,
         drizzle: {
@@ -106,6 +108,7 @@ export default function SetupChecks () {
       }
     } catch (error) {
       toast.error('Error checking table')
+      console.error(error)
       setChecks(prev => ({
         ...prev,
         table: { completed: true, success: false, message: 'Check failed' }
