@@ -1,5 +1,6 @@
 import SupabaseTest from '@/components/dev/SupabaseTest'
 import DatabaseTest from '@/components/dev/DatabaseTest'
+import TableCheck from '@/components/dev/TableCheck'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
 
 export default function Home () {
@@ -10,6 +11,7 @@ export default function Home () {
       <div className='flex gap-2'>
         <SupabaseTest />
         <DatabaseTest />
+        <TableCheck />
       </div>
     </div>
   )

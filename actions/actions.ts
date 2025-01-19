@@ -1,6 +1,7 @@
 'use server'
 
 import { db } from '@/db'
+import { todosTable } from '@/db/schema'
 import { sql } from 'drizzle-orm'
 
 export async function testSupabaseConnection () {
@@ -39,5 +40,15 @@ export async function testDatabaseConnection () {
   } catch (error) {
     console.error('Drizzle connection failed:', error)
     return { success: false, message: 'Drizzle connection failed' }
+  }
+}
+
+export async function checkTableAction () {
+  try {
+    await db.select().from(todosTable)
+    return { success: true, message: 'Todos table exists!' }
+  } catch (error) {
+    console.error('Todos table does not exist:', error)
+    return { success: false, message: 'Todos table does not exist' }
   }
 }

@@ -1,13 +1,3 @@
-// import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
-
-// export const users = pgTable('users', {
-//   id: uuid('id').primaryKey().defaultRandom(),
-//   email: text('email').unique().notNull(),
-//   createdAt: timestamp('created_at').defaultNow().notNull()
-// })
-
-// // Add more tables as needed
-
 import { boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const usersTable = pgTable('users', {
@@ -24,3 +14,12 @@ export const usersTable = pgTable('users', {
 // Type definitions using the newer syntax
 export type InsertUser = typeof usersTable.$inferInsert
 export type SelectUser = typeof usersTable.$inferSelect
+
+export const todosTable = pgTable('todos', {
+  id: text('todo_id').primaryKey(),
+  title: text('title'),
+  completed: boolean('completed').default(false)
+})
+
+export type InsertTodo = typeof todosTable.$inferInsert
+export type SelectTodo = typeof todosTable.$inferSelect

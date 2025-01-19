@@ -1,3 +1,9 @@
+CREATE TABLE "todos" (
+	"todo_id" text PRIMARY KEY NOT NULL,
+	"title" text,
+	"completed" boolean DEFAULT false
+);
+--> statement-breakpoint
 CREATE TABLE "users" (
 	"user_id" text PRIMARY KEY NOT NULL,
 	"email" text,
