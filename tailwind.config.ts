@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import animatePlugin from "tailwindcss-animate";
 
 export default {
     darkMode: ["class"],
@@ -8,6 +9,13 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+		container: {
+  		center: true,
+  		padding: "1rem",
+  		screens: {
+  			"2xl": "1400px",
+  		},
+  	},
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',
@@ -55,8 +63,18 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+			fontFamily: {
+  			sans: ['var(--font-sans)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+  			mono: ['var(--font-mono)', 'var(--font-fira-code)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+  			'geist': ['var(--font-sans)'],
+  			'geist-mono': ['var(--font-mono)'],
+  			'inter': ['var(--font-inter)'],
+  			'fira': ['var(--font-fira-code)'],
+				'silkscreen': ['var(--font-silkscreen)'],
+  			'jetbrains': ['var(--font-jetbrains-mono)', 'monospace'],
+  		},
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animatePlugin],
 } satisfies Config;
