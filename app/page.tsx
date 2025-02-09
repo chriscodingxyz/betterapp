@@ -1,3 +1,4 @@
+import AuthSignInCheck from '@/components/dev/AuthSignInCheck'
 import SetupChecks from '@/components/dev/SetupChecks'
 // import { ReadmeContent } from '@/components/dev/ReadmeContent'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
@@ -10,6 +11,7 @@ export default function Home () {
         {/* <h1 className='text-md font-bold'>Setup Checks</h1> */}
       </div>
       <SetupChecks />
+      <AuthSignInCheck />
       {/* <ReadmeContent /> */}
     </div>
   )

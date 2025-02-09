@@ -1,7 +1,7 @@
 'use server'
 
 import { db } from '@/db'
-import { todosTable } from '@/db/schema'
+import { todosTable } from '@/db/schemas/todos-schema'
 import { sql } from 'drizzle-orm'
 
 export async function testSupabaseConnection () {
