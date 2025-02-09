@@ -122,7 +122,7 @@ export default function SetupChecks () {
     if (!status.completed) return null
     return (
       <span
-        className={`text-sm ${
+        className={`text-xs font-mono ${
           status.success ? 'text-green-500' : 'text-red-500'
         }`}
       >
@@ -135,34 +135,42 @@ export default function SetupChecks () {
     <div className='flex flex-col items-center gap-3'>
       <div className='flex flex-col items-center gap-1'>
         <Button
+          size='sm'
           onClick={handleSupabaseCheck}
           disabled={loading || (currentStep !== 0 && checks.supabase.completed)}
           variant={currentStep === 0 ? 'default' : 'outline'}
-          className='w-40 h-8 text-sm'
+          className='w-40 text-xs'
         >
           {loading && currentStep === 0 ? (
             'Checking...'
           ) : (
             <>
-              Supabase <IconSupabase className='ml-2 size-3' />
+              Supabase <IconSupabase className='size-3' />
             </>
           )}
         </Button>
         {renderStatus(checks.supabase)}
+        {!checks.supabase.success && checks.supabase.completed && (
+          <span className='text-xs text-red-500'>
+            Ensure your project is active:
+            https://supabase.com/dashboard/projects
+          </span>
+        )}
       </div>
 
       <div className='flex flex-col items-center gap-1'>
         <Button
+          size='sm'
           onClick={handleDrizzleCheck}
           disabled={loading || currentStep !== 1 || !checks.supabase.success}
           variant={currentStep === 1 ? 'default' : 'outline'}
-          className='w-40 h-8 text-sm'
+          className='w-40 text-xs'
         >
           {loading && currentStep === 1 ? (
             'Checking...'
           ) : (
             <>
-              Drizzle <IconDrizzle className='ml-2 size-3' />
+              Drizzle <IconDrizzle className=' size-3 bg-black' />
             </>
           )}
         </Button>
@@ -171,16 +179,17 @@ export default function SetupChecks () {
 
       <div className='flex flex-col items-center gap-1'>
         <Button
+          size='sm'
           onClick={handleTableCheck}
           disabled={loading || currentStep !== 2 || !checks.drizzle.success}
           variant={currentStep === 2 ? 'default' : 'outline'}
-          className='w-40 h-8 text-sm'
+          className='w-40 text-xs'
         >
           {loading && currentStep === 2 ? (
             'Checking...'
           ) : (
             <>
-              Table <Table className='ml-2 size-3' />
+              Table <Table className='size-3' />
             </>
           )}
         </Button>

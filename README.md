@@ -16,7 +16,7 @@ SUPABASE_SERVICE_ROLE_KEY=
 DATABASE_URL=
 ```
 
-2. Rename `env.local.txt` to `.env.local` or `.env`
+2. Rename `env.local.txt` to `.env.local` or `.env` (Make sure to add a '.' in front of the file name)
 
 ## Supabase Configuration
 
