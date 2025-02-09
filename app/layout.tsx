@@ -8,7 +8,7 @@ import {
   JetBrains_Mono
 } from 'next/font/google'
 import './globals.css'
-import ViewportIndicator from '@/components/dev/ViewportIndicator'
+import ViewportIndicator from '@/components/ViewportIndicator'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 import { Toaster } from '@/components/ui/sonner'

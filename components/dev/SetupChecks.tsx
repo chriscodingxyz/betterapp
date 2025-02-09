@@ -17,6 +17,7 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+// import { cn } from '@/lib/utils'
 
 type CheckStatus = {
   completed: boolean
@@ -29,6 +30,90 @@ type Checks = {
   drizzle: CheckStatus
   table: CheckStatus
 }
+
+type CheckStepProps = {
+  title: string
+  icon: React.ReactNode
+  isLoading: boolean
+  isCurrentStep: boolean
+  isCompleted: boolean
+  isSuccess: boolean
+  isDisabled: boolean
+  message: string | null
+  onCheck: () => void
+}
+
+function CheckStep ({
+  title,
+  icon,
+  isLoading,
+  isCurrentStep,
+  isCompleted,
+  isSuccess,
+  isDisabled,
+  message,
+  onCheck
+}: CheckStepProps) {
+  return (
+    <div className='flex flex-col items-center gap-1'>
+      <div className='flex items-center'>
+        <Button
+          size='sm'
+          onClick={onCheck}
+          disabled={isDisabled}
+          variant={isCurrentStep ? 'default' : 'outline'}
+          className='w-40 text-xs'
+        >
+          {isLoading && isCurrentStep ? (
+            'Checking...'
+          ) : (
+            <>
+              {title} {icon}
+            </>
+          )}
+        </Button>
+        <div className='w-8 flex justify-center'>
+          {isCompleted &&
+            (isSuccess ? (
+              <CheckCircle2 className='w-4 h-4 text-green-500' />
+            ) : (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <XCircle className='w-4 h-4 text-red-500' />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{message || 'Check failed'}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const SETUP_STEPS = [
+  {
+    id: 'supabase',
+    title: 'Supabase',
+    icon: <IconSupabase className='size-3' />,
+    requiresPrevious: false
+  },
+  {
+    id: 'drizzle',
+    title: 'Drizzle',
+    icon: <IconDrizzle className='size-3 bg-black' />,
+    requiresPrevious: 'supabase'
+  },
+  {
+    id: 'table',
+    title: 'Table',
+    icon: <Table className='size-3' />,
+    requiresPrevious: 'drizzle'
+  }
+] as const
 
 export default function SetupChecks () {
   const [currentStep, setCurrentStep] = useState(0)
@@ -124,138 +209,32 @@ export default function SetupChecks () {
     }
   }
 
+  const handlers = {
+    supabase: handleSupabaseCheck,
+    drizzle: handleDrizzleCheck,
+    table: handleTableCheck
+  }
+
   return (
-    <div className='flex flex-col items-center gap-3'>
-      <div className='flex flex-col items-center gap-1'>
-        <div
-          className={`flex items-center ${
-            loading || (currentStep !== 0 && checks.supabase.completed)
-              ? 'cursor-not-allowed'
-              : ''
-          }`}
-        >
-          <Button
-            size='sm'
-            onClick={handleSupabaseCheck}
-            disabled={
-              loading || (currentStep !== 0 && checks.supabase.completed)
-            }
-            variant={currentStep === 0 ? 'default' : 'outline'}
-            className='w-40 text-xs'
-          >
-            {loading && currentStep === 0 ? (
-              'Checking...'
-            ) : (
-              <>
-                Supabase <IconSupabase className='size-3' />
-              </>
-            )}
-          </Button>
-          <div className='w-8 flex justify-center'>
-            {checks.supabase.completed &&
-              (checks.supabase.success ? (
-                <CheckCircle2 className='w-4 h-4 text-green-500' />
-              ) : (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <XCircle className='w-4 h-4 text-red-500' />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{checks.supabase.message || 'Connection failed'}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ))}
-          </div>
-        </div>
-      </div>
-
-      <div className='flex flex-col items-center gap-1'>
-        <div
-          className={`flex items-center ${
-            loading || currentStep !== 1 || !checks.supabase.success
-              ? 'cursor-not-allowed'
-              : ''
-          }`}
-        >
-          <Button
-            size='sm'
-            onClick={handleDrizzleCheck}
-            disabled={loading || currentStep !== 1 || !checks.supabase.success}
-            variant={currentStep === 1 ? 'default' : 'outline'}
-            className='w-40 text-xs'
-          >
-            {loading && currentStep === 1 ? (
-              'Checking...'
-            ) : (
-              <>
-                Drizzle <IconDrizzle className='size-3 bg-black' />
-              </>
-            )}
-          </Button>
-          <div className='w-8 flex justify-center'>
-            {checks.drizzle.completed &&
-              (checks.drizzle.success ? (
-                <CheckCircle2 className='w-4 h-4 text-green-500' />
-              ) : (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <XCircle className='w-4 h-4 text-red-500' />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{checks.drizzle.message || 'Connection failed'}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ))}
-          </div>
-        </div>
-      </div>
-
-      <div className='flex flex-col items-center gap-1'>
-        <div
-          className={`flex items-center ${
-            loading || currentStep !== 2 || !checks.drizzle.success
-              ? 'cursor-not-allowed'
-              : ''
-          }`}
-        >
-          <Button
-            size='sm'
-            onClick={handleTableCheck}
-            disabled={loading || currentStep !== 2 || !checks.drizzle.success}
-            variant={currentStep === 2 ? 'default' : 'outline'}
-            className='w-40 text-xs'
-          >
-            {loading && currentStep === 2 ? (
-              'Checking...'
-            ) : (
-              <>
-                Table <Table className='size-3' />
-              </>
-            )}
-          </Button>
-          <div className='w-8 flex justify-center'>
-            {checks.table.completed &&
-              (checks.table.success ? (
-                <CheckCircle2 className='w-4 h-4 text-green-500' />
-              ) : (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <XCircle className='w-4 h-4 text-red-500' />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{checks.table.message || 'Check failed'}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ))}
-          </div>
-        </div>
-      </div>
+    <div className='flex flex-col items-center gap-0'>
+      {SETUP_STEPS.map((step, index) => (
+        <CheckStep
+          key={step.id}
+          title={step.title}
+          icon={step.icon}
+          isLoading={loading}
+          isCurrentStep={currentStep === index}
+          isCompleted={checks[step.id].completed}
+          isSuccess={checks[step.id].success}
+          isDisabled={
+            loading ||
+            (step.requiresPrevious && !checks[step.requiresPrevious].success) ||
+            checks[step.id].completed
+          }
+          message={checks[step.id].message}
+          onCheck={handlers[step.id]}
+        />
+      ))}
     </div>
   )
 }
