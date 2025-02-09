@@ -3,7 +3,9 @@
 import { db } from '@/db'
 import { todosTable } from '@/db/schemas/todos-schema'
 import { sql } from 'drizzle-orm'
+import { revalidateTag } from 'next/cache'
 
+// testing checks
 export async function testSupabaseConnection () {
   // Check if env variables exist
   if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
@@ -51,4 +53,12 @@ export async function checkTableAction () {
     console.error('Todos table does not exist:', error)
     return { success: false, message: 'Todos table does not exist' }
   }
+}
+
+// revalidate
+export async function refreshFactAction (timeout = 5000) {
+  'use server'
+  // adding 5 second delay to see pending text
+  await new Promise(resolve => setTimeout(resolve, timeout))
+  revalidateTag('numberFact')
 }

@@ -61,7 +61,7 @@ function CheckStep ({
           size='sm'
           onClick={onCheck}
           disabled={isDisabled}
-          variant={isCurrentStep ? 'default' : 'outline'}
+          variant={isCurrentStep ? 'outline' : 'ghost'}
           className='w-40 text-xs'
         >
           {isLoading && isCurrentStep ? (
