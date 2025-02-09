@@ -18,7 +18,7 @@ export default function AuthSignInCheck () {
           })
         }}
       >
-        Sign Up
+        😎
       </Button>
     </div>
   )
