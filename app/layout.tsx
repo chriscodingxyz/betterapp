@@ -12,6 +12,7 @@ import ViewportIndicator from '@/components/ViewportIndicator'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 import { Toaster } from '@/components/ui/sonner'
+import Header from '@/components/layout/Header'
 
 const silkscreen = Silkscreen({
   variable: '--font-silkscreen',
@@ -65,6 +66,7 @@ export default function RootLayout ({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
           {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
           <Toaster richColors />

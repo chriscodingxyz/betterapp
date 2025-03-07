@@ -70,3 +70,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-center-col {
+  @apply flex items-center justify-center flex-col;
+}

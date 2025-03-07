@@ -18,10 +18,20 @@ async function signUp (formData: FormData) {
 export default function SignUpServerPage () {
   return (
     <form action={signUp}>
-      <Input type='email' name='email' required />
-      <Input type='password' name='password' required />
-      <Input type='text' name='name' required />
-      <Input type='url' name='image' required />
+      <Input type='email' name='email' required placeholder='test@test.com' />
+      <Input
+        type='password'
+        name='password'
+        required
+        placeholder='password1234'
+      />
+      <Input type='text' name='name' required placeholder='name' />
+      <Input
+        type='url'
+        name='image'
+        required
+        placeholder='https://example.com/image.png'
+      />
       <Button type='submit'>Sign Up Server</Button>
     </form>
   )

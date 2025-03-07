@@ -65,7 +65,9 @@ function CheckStep ({
           className='w-40 text-xs'
         >
           {isLoading && isCurrentStep ? (
-            'Checking...'
+            <>
+              {'...'} {icon}
+            </>
           ) : (
             <>
               {title} {icon}
