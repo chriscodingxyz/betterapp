@@ -1,6 +1,7 @@
 import SetupChecks from '@/components/dev/SetupChecks'
 import { ThemeLogo } from '@/components/theme/ThemeLogo'
 import RandomFact from '@/components/RandomFact'
+import { ShadowButton } from '@/components/ShadowButton'
 
 export default async function Home () {
   // revalidate every 7 minutes
@@ -20,6 +21,7 @@ export default async function Home () {
           <div className='flex flex-col items-center gap-8 border-primary z-10'>
             <SetupChecks />
             <RandomFact fact={rawText} />
+            <ShadowButton>stuff</ShadowButton>
           </div>
         </div>
       </div>
