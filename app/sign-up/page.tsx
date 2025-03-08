@@ -1,4 +1,4 @@
-import { auth } from '@/auth/auth'
+import { auth } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { headers } from 'next/headers'

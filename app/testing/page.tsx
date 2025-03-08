@@ -1,5 +1,5 @@
 import { signInAction, signUpAction } from '@/actions/authStuff'
-import { auth } from '@/auth/auth'
+import { auth } from '@/lib/auth'
 import SignOutButton from '@/components/SignOutButton'
 import { headers } from 'next/headers'
 

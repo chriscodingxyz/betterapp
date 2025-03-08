@@ -13,7 +13,7 @@ export default async function Home () {
   const rawText = await response.text()
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen gap-8 p-4'>
+    <div className='flex flex-col items-center justify-center gap-8 p-4 h-[calc(100vh-4rem)]'>
       <div className='flex flex-col items-center gap-4'>
         <div className='flex flex-col items-center gap-0 cursor-pointer -space-y-1'>
           <ThemeLogo />

@@ -1,6 +1,6 @@
 'use server'
 
-import { auth } from '@/auth/auth'
+import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 
 export const signInAction = async () => {

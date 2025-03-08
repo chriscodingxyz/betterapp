@@ -1,9 +1,10 @@
 'use client'
 
-import { signOut, useSession } from '@/auth/auth-client'
-import { Button } from './ui/button'
+import { useSession } from '@/lib/auth-client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import SignOutButton from './SignOutButton'
 
 export default function AuthPortal () {
   const response = useSession()
@@ -24,7 +25,7 @@ export default function AuthPortal () {
         height={40}
         className='rounded-full'
       />
-      <Button onClick={() => signOut()}>Sign Out</Button>
+      <SignOutButton />
     </>
   )
 }
