@@ -1,17 +1,21 @@
-import { authClient } from '@/auth/auth-client'
+import { auth } from '@/auth/auth'
 import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
 
 export default async function Dashboard () {
   // Get the session on the server side
-  const session = await authClient.getSession()
+  const response = await auth.api.getSession({
+    headers: await headers()
+  })
 
-  console.log('session ====>', session)
+  const session = response?.session
+  const user = response?.user
 
-  // Check if user is authenticated
-  if (!session) {
-    // Redirect to login if not authenticated
+  console.log('🍒 dashboard page response =>>', response)
+
+  if (!session || !user) {
     redirect('/login')
   }
 
-  return <div>authorized</div>
+  return <div>authorized {user.name}</div>
 }

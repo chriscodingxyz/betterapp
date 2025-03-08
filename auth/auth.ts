@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { db } from '@/db'
@@ -12,11 +14,12 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true
   },
-  cookie: {
-    name: 'better-auth-session',
-    httpOnly: true,
-    secure: false, // Allow cookies on http://localhost
-    maxAge: 30 * 24 * 60 * 60 // 30 days
-  },
+  // cookie: {
+  //   name: 'better-auth-session',
+  //   httpOnly: true,
+  //   secure: false, // Allow cookies on http://localhost
+  //   sameSite: 'lax',
+  //   maxAge: 30 * 24 * 60 * 60 // 30 days
+  // },
   plugins: [nextCookies()] // make sure this is the last plugin in the array
 })
