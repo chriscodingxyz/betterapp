@@ -58,7 +58,7 @@ export default function RootLayout ({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${firaCode.variable} ${silkscreen.variable} ${jetbrainsMono.variable} antialiased font-mono flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${firaCode.variable} ${silkscreen.variable} ${jetbrainsMono.variable} antialiased font-geist flex flex-col min-h-[100dvh]`}
       >
         <ThemeProvider
           attribute='class'
@@ -66,7 +66,9 @@ export default function RootLayout ({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <div className='top-0 left-0 sticky z-50 w-full bg-background'>
+            <Header />
+          </div>
           <div className='flex-1'>{children}</div>
           {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
           <Toaster richColors />

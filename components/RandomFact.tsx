@@ -23,7 +23,7 @@ export default function RandomFact ({ fact }: RandomFactProps) {
         {fact}
       </div>
       <Button
-        size='sm'
+        size='xs'
         variant='outline'
         onClick={() => startTransition(() => refreshFactAction())}
         disabled={isPending}

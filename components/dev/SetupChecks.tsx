@@ -58,10 +58,10 @@ function CheckStep ({
     <div className='flex flex-col items-center gap-1'>
       <div className='flex items-center'>
         <Button
-          size='sm'
-          onClick={onCheck}
-          disabled={isDisabled}
-          variant={isCurrentStep ? 'outline' : 'ghost'}
+          size='xs'
+          onClick={isDisabled ? undefined : onCheck}
+          // disabled={isDisabled}
+          variant={isCurrentStep ? 'ghost' : 'ghost'}
           className='w-40 text-xs'
         >
           {isLoading && isCurrentStep ? (
@@ -69,9 +69,10 @@ function CheckStep ({
               {'...'} {icon}
             </>
           ) : (
-            <>
-              {title} {icon}
-            </>
+            <div className='flex items-center justify-between w-full'>
+              <div className='w-8 flex justify-center'>{icon}</div>
+              <span className='mx-auto'>{title}</span>
+            </div>
           )}
         </Button>
         <div className='w-8 flex justify-center'>
@@ -100,19 +101,19 @@ const SETUP_STEPS = [
   {
     id: 'supabase',
     title: 'Supabase',
-    icon: <IconSupabase className='size-3' />,
+    icon: <IconSupabase className='size-4' />,
     requiresPrevious: false
   },
   {
     id: 'drizzle',
     title: 'Drizzle',
-    icon: <IconDrizzle className='size-3 bg-black' />,
+    icon: <IconDrizzle className='size-4 bg-black' />,
     requiresPrevious: 'supabase'
   },
   {
     id: 'table',
     title: 'Table',
-    icon: <Table className='size-3' />,
+    icon: <Table className='size-4' />,
     requiresPrevious: 'drizzle'
   }
 ] as const

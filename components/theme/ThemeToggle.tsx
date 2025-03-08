@@ -16,13 +16,13 @@ export function ThemeToggle () {
   }
 
   return (
-    <Button variant='ghost' size='icon' onClick={toggleTheme}>
+    <Button variant='ghost' size='xs' onClick={toggleTheme}>
       {!hasToggled ? (
-        <Scale strokeWidth={1.5} className='h-[1.2rem] w-[1.2rem]' />
+        <Scale strokeWidth={2} className='h-[1.2rem] w-[1.2rem]' />
       ) : resolvedTheme === 'dark' ? (
-        <Moon strokeWidth={1.5} className='h-[1.2rem] w-[1.2rem]' />
+        <Moon strokeWidth={2} className='h-[1.2rem] w-[1.2rem]' />
       ) : (
-        <Sun strokeWidth={1.5} className='h-[1.2rem] w-[1.2rem]' />
+        <Sun strokeWidth={2} className='h-[1.2rem] w-[1.2rem]' />
       )}
       <span className='sr-only'>Toggle theme</span>
     </Button>
