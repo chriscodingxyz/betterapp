@@ -47,7 +47,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'BetterApp',
-  description: 'BetterApp is a simple app to help you get started with Next.js.'
+  description: 'The best quick start template using latest tech of 2025'
 }
 
 export default function RootLayout ({
@@ -66,9 +66,7 @@ export default function RootLayout ({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='top-0 left-0 sticky z-50 w-full bg-background'>
-            <Header />
-          </div>
+          <Header />
           <div className='flex-1'>{children}</div>
           {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
           <Toaster richColors />

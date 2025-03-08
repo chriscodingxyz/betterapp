@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import AuthPortal from '../AuthPortal'
+import { ShadowButton } from '../ShadowButton'
 
 export default function Header () {
   return (
@@ -8,17 +9,18 @@ export default function Header () {
         <div className='flex items-center gap-4 '>
           <Link
             href='/'
-            className='text-lg font-bold tracking-tight hover:opacity-80 transition-opacity '
+            className='text-lg font-bold tracking-tight  underline underline-offset-4 hover:no-underline '
           >
             FLUID
           </Link>
-          <nav className='hidden md:flex items-center space-x-4 text-sm font-medium'>
-            {/* <Link
-              href='/'
-              className='transition-colors hover:text-foreground/80'
+          <nav className='hidden sm:flex items-center space-x-4 text-sm font-medium'>
+            <a
+              href='https://github.com/chriscodingxyz/betterapp'
+              target='_blank'
+              rel='noopener noreferrer'
             >
-              Home
-            </Link> */}
+              <ShadowButton size='xs'> ⭐ on GitHub</ShadowButton>
+            </a>
           </nav>
         </div>
         <div className='flex items-center'>
