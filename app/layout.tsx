@@ -13,6 +13,7 @@ import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 import { Toaster } from '@/components/ui/sonner'
 import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 const silkscreen = Silkscreen({
   variable: '--font-silkscreen',
@@ -68,6 +69,7 @@ export default function RootLayout ({
         >
           <Header />
           <div className='flex-1'>{children}</div>
+          <Footer />
           {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
           <Toaster richColors />
         </ThemeProvider>
