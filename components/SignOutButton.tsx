@@ -11,6 +11,8 @@ export default function SignOutButton () {
   // const session = data?.session
   // const user = data?.user
 
+  console.log(data)
+
   return (
     <div
       className='w-full flex items-center cursor-pointer'

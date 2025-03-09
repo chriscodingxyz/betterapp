@@ -1,14 +1,14 @@
 'use server'
 
-type ActionState = {
-  message: string | null
-  error: string | null
-}
+// type ActionState = {
+//   message: string | null
+//   error: string | null
+// }
 
-const initialState: ActionState = {
-  message: null,
-  error: null
-}
+// const initialState: ActionState = {
+//   message: null,
+//   error: null
+// }
 
 export async function exampleOneAction (prevState: string, formData: FormData) {
   await new Promise(resolve => setTimeout(resolve, 2000))

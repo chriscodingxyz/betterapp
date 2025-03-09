@@ -23,7 +23,7 @@ export default async function SignInPage () {
 
     const email = formData.get('email') as string
     const password = formData.get('password') as string
-    const remember = formData.get('remember') === 'on'
+    // const remember = formData.get('remember') === 'on'
 
     await auth.api.signInEmail({
       body: {
