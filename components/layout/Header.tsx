@@ -5,7 +5,7 @@ import { ShadowButton } from '../ShadowButton'
 export default function Header () {
   return (
     <header className='top-0 left-0 sticky z-50 w-full bg-background'>
-      <div className='flex h-10 items-center justify-between container'>
+      <div className='flex h-10 items-center justify-between container max-w-5xl'>
         <div className='flex items-center gap-4 '>
           <Link
             href='/'

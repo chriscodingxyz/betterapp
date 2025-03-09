@@ -10,8 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from './ui/dropdown-menu'
-import { Button } from './ui/button'
+} from '@/components/ui/dropdown-menu'
 // import { LogIn } from 'lucide-react'
 import { ThemeToggle } from './theme/ThemeToggle'
 import { ShadowButton } from './ShadowButton'

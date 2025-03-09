@@ -15,22 +15,24 @@ export default async function Home () {
   // const rawText = await response.text()
 
   return (
-    <div className='flex flex-col items-center justify-center gap-8 p-4 h-[calc(100vh-40px)]'>
-      <div className='flex flex-col items-center gap-4'>
-        <div className='flex flex-col items-center gap-0'>
-          <div className='flex flex-col items-center gap-2 mb-10'>
-            <div className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'>
-              Roll your own <MetallicText>SaaS</MetallicText> in minutes!
+    <div className='h-[calc(100vh-40px)] py-12'>
+      <div className='container md:border border-dotted max-w-3xl h-full flex-center '>
+        <div className='flex flex-col items-center gap-4'>
+          <div className='flex flex-col items-center gap-0'>
+            <div className='flex flex-col items-center gap-2 mb-10'>
+              <div className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'>
+                Roll your own <MetallicText>SaaS</MetallicText> in minutes!
+              </div>
+              <div className='text-xl text-muted-foreground'>
+                Launch faster with confidence
+              </div>
             </div>
-            <div className='text-xl text-muted-foreground'>
-              Launch faster with confidence
-            </div>
-          </div>
-          <ThemeLogo />
-          <div className='flex flex-col items-center gap-8 border-primary z-10 -mt-2'>
-            {/* <SetupChecks />
+            {/* <ThemeLogo /> */}
+            <div className='flex flex-col items-center gap-8 border-primary z-10 -mt-2'>
+              {/* <SetupChecks />
             <RandomFact fact={rawText} /> */}
-            <ShadowButton size='xs'>Initiate Checklist</ShadowButton>
+              <ShadowButton size='xs'>Initiate Checklist</ShadowButton>
+            </div>
           </div>
         </div>
       </div>
