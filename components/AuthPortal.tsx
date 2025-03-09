@@ -14,6 +14,7 @@ import {
 // import { LogIn } from 'lucide-react'
 import { ThemeToggle } from './theme/ThemeToggle'
 import { ShadowButton } from './ShadowButton'
+import { Button } from './ui/button'
 
 export default function AuthPortal () {
   // Keep the original logic intact
@@ -38,10 +39,12 @@ export default function AuthPortal () {
       <div className='flex items-center gap-2'>
         <ThemeToggle />
         <Link href='/sign-in'>
-          <ShadowButton size='xs'>
-            {/* <LogIn strokeWidth={2} className='h-[1.2rem] w-[1.2rem]' /> */}
+          {/* <ShadowButton size='xs'> */}
+          {/* <LogIn strokeWidth={2} className='h-[1.2rem] w-[1.2rem]' /> */}
+          <Button variant='outline' size='xs'>
             Login
-          </ShadowButton>
+          </Button>
+          {/* </ShadowButton> */}
         </Link>
       </div>
     )
