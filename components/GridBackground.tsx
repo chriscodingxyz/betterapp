@@ -41,7 +41,7 @@ export function GridBackground ({
 
   return (
     <div
-      className={`relative h-full w-full ${outerBorderClass} ${className}`}
+      className={`relative h-full w-full ${outerBorderClass} ${className} overflow-hidden`}
       style={outerBorderStyles}
     >
       {/* Grid lines */}
