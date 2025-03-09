@@ -6,7 +6,7 @@ import { MetallicText } from '../MetallicText'
 
 export default function Header () {
   return (
-    <header className='top-0 left-0 sticky z-50 w-full bg-background'>
+    <header className='top-0 left-0 sticky z-50 w-full  backdrop-blur-xl'>
       <div className='flex h-10 items-center justify-between container max-w-4xl'>
         <div className='flex items-center gap-4'>
           <Link href='/' className='text-lg font-bold tracking-tight '>
