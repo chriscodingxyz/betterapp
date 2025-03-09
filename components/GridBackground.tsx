@@ -124,7 +124,7 @@ export function GridBackground ({
       )}
 
       {/* Content */}
-      <div className='h-full w-full flex-center'>{children}</div>
+      <div className='h-full w-full flex-center min-h-full'>{children}</div>
     </div>
   )
 }

@@ -17,18 +17,18 @@ export default async function Home () {
   // const rawText = await response.text()
 
   return (
-    <div className='h-[calc(100vh-40px)] py-12'>
-      <div className='container max-w-3xl h-full flex-center z-10'>
+    <div className='min-h-[calc(100vh-40px)] py-12'>
+      <div className='container max-w-3xl h-full flex-center z-10 relative'>
         <GridBackground
           className='absolute inset-0'
-          // gridLineWidth={1}
-          // gridLineStyle='solid'
-          // showOuterBorder={true}
-          // outerBorderWidth={1}
-          // outerBorderStyle='dotted'
-          // hideOuterGridLines={true}
+          gridLineWidth={1}
+          gridLineStyle='solid'
+          showOuterBorder={true}
+          outerBorderWidth={1}
+          outerBorderStyle='dotted'
+          hideOuterGridLines={true}
         >
-          <div className='flex flex-col items-center gap-4'>
+          <div className='flex flex-col items-center gap-4 py-12'>
             <div className='flex flex-col items-center gap-0'>
               <div className='flex flex-col items-center gap-2 mb-10'>
                 <div className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'>
