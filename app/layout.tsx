@@ -46,8 +46,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'BetterApp',
-  description: 'The best quick start template using latest tech of 2025'
+  title: 'FLUID',
+  description: 'The only template you will need for your SaaS'
 }
 
 export default function RootLayout ({
