@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { useTheme } from 'next-themes'
-import logoImg from '@/public/mercury.png'
 import Image from 'next/image'
 
 export function ThemeLogo () {
@@ -16,9 +15,11 @@ export function ThemeLogo () {
     <Image
       className='cursor-pointer z-0'
       onClick={toggleTheme}
-      src={logoImg}
+      src='/mercury.png'
       alt='logo'
       width={150}
+      height={150}
+      unoptimized
     />
   )
 }
