@@ -70,9 +70,6 @@ export default function Footer () {
           </div>
         </div>
       </div>
-      <div className='text-xs text-center text-muted-foreground mt-4'>
-        <span>mobile: <span className='text-muted-foreground/60'>&lt;640</span> • 500 • <span className='font-medium'>phone</span></span>
-      </div>
     </footer>
   )
 }
