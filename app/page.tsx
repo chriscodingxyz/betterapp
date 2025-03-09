@@ -5,7 +5,7 @@ import { ShadowButton } from '@/components/ShadowButton'
 import { MetallicText } from '@/components/MetallicText'
 import { GridBackground } from '@/components/GridBackground'
 import TechIcons from '@/components/TechIcons'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export default async function Home () {
   // revalidate every 7 minutes
