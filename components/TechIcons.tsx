@@ -17,7 +17,7 @@ import Image from 'next/image'
 
 export default function TechIcons () {
   return (
-    <div className='flex flex-wrap gap-4'>
+    <div className='flex-center flex-wrap gap-2 '>
       <Nextjs />
       <ReactIcon />
       <TypeScript />

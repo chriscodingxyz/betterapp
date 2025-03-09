@@ -28,7 +28,7 @@ export default async function Home () {
           outerBorderStyle='dotted'
           hideOuterGridLines={true}
         >
-          <div className='flex flex-col items-center gap-4 py-12'>
+          <div className='flex flex-col items-center gap-4 py-12 px-1'>
             <div className='flex flex-col items-center gap-0'>
               <div className='flex flex-col items-center gap-2 mb-10'>
                 <div className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'>
