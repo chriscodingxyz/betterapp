@@ -132,7 +132,7 @@
 'use client'
 
 import React, { useRef, useEffect } from 'react'
-import { motion, AnimatePresence, Variants } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 
 interface GridBackgroundProps {
   children?: React.ReactNode
@@ -195,6 +195,7 @@ export function GridBackground ({
 
   // Update grid lines based on container size
   useEffect(() => {
+    // Update grid lines based on container size
     if (!containerRef.current) return
 
     const updateGridLines = () => {
@@ -220,7 +221,7 @@ export function GridBackground ({
     updateGridLines()
     window.addEventListener('resize', updateGridLines)
     return () => window.removeEventListener('resize', updateGridLines)
-  }, [gridDensity])
+  }, [gridDensity, gridLinesConfig.base, gridLinesConfig.sm, gridLinesConfig.md, gridLinesConfig.lg, gridLinesConfig.xl])
 
   // Animation variants
   const containerVariants: Variants = {
