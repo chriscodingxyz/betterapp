@@ -1,0 +1,3 @@
+- add a fallback for the avatar image if not provided
+- add the right redirects
+- ensure heading accountportal updates correct. Refresh sessions? actually guess that would only be good for jwts with a payload. Maybe revalidate or something
