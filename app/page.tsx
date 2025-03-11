@@ -1,3 +1,5 @@
+'use client'
+
 // import SetupChecks from '@/components/dev/SetupChecks'
 import { ThemeLogo } from '@/components/theme/ThemeLogo'
 // import RandomFact from '@/components/RandomFact'
@@ -6,8 +8,9 @@ import { MetallicText } from '@/components/MetallicText'
 import { GridBackground } from '@/components/GridBackground'
 import TechIcons from '@/components/TechIcons'
 // import Image from 'next/image'
+import { motion } from 'framer-motion'
 
-export default async function Home () {
+export default function Home () {
   // revalidate every 7 minutes
   // const response = await fetch('http://numbersapi.com/random', {
   //   next: {
@@ -17,9 +20,83 @@ export default async function Home () {
   // })
   // const rawText = await response.text()
 
+  // Animation variants for children elements
+  // const childVariants = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { duration: 0.5 }
+  //   }
+  // }
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: 0.2
+      }
+    }
+  }
+
+  const subtitleVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        delay: 0.3
+      }
+    }
+  }
+
+  const logoVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 260,
+        damping: 20,
+        delay: 0.5
+      }
+    }
+  }
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        delay: 0.7
+      }
+    },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.2 }
+    }
+  }
+
+  const techIconsVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.9,
+        duration: 0.5
+      }
+    }
+  }
+
   return (
     <div className='min-h-[calc(100vh-40px)] py-12'>
-      <div className='container max-w-5xl h-full flex-center z-10 relative'>
+      <div className='container max-w-xl h-full flex-center z-10 relative'>
         <GridBackground
           className='absolute inset-0'
           gridLineWidth={1}
@@ -28,26 +105,44 @@ export default async function Home () {
           outerBorderWidth={1}
           outerBorderStyle='dotted'
           hideOuterGridLines={true}
+          animate={true}
+          animationDelay={0.1}
         >
-          <div className='flex flex-col items-center gap-4 py-12 px-1'>
+          <motion.div
+            className='flex flex-col items-center gap-4 py-12 px-1'
+            initial='hidden'
+            animate='visible'
+          >
             <div className='flex flex-col items-center gap-0'>
               <div className='flex flex-col items-center gap-2 mb-10'>
-                <div className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'>
+                <motion.div
+                  className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'
+                  variants={titleVariants}
+                >
                   Roll your own <MetallicText>SaaS</MetallicText> in minutes!
-                </div>
-                <div className='text-xl text-muted-foreground'>
+                </motion.div>
+                <motion.div
+                  className='text-xl text-muted-foreground'
+                  variants={subtitleVariants}
+                >
                   Launch faster with confidence
-                </div>
+                </motion.div>
               </div>
-              <ThemeLogo />
+              <motion.div variants={logoVariants}>
+                <ThemeLogo />
+              </motion.div>
               <div className='flex flex-col items-center gap-8 border-primary z-10 -mt-2'>
                 {/* <SetupChecks />
               <RandomFact fact={rawText} /> */}
-                <ShadowButton size='xs'>Initiate Checklist</ShadowButton>
-                <TechIcons />
+                <motion.div variants={buttonVariants} whileHover='hover'>
+                  <ShadowButton size='xs'>Initiate Checklist</ShadowButton>
+                </motion.div>
+                <motion.div variants={techIconsVariants}>
+                  <TechIcons />
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </GridBackground>
       </div>
 

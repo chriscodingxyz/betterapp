@@ -132,6 +132,7 @@
 'use client'
 
 import React, { useRef, useEffect } from 'react'
+import { motion, AnimatePresence, Variants } from 'framer-motion'
 
 interface GridBackgroundProps {
   children?: React.ReactNode
@@ -148,6 +149,9 @@ interface GridBackgroundProps {
   showOuterBorder?: boolean
   outerBorderWidth?: number
   outerBorderStyle?: 'solid' | 'dashed' | 'dotted'
+  // Animation properties
+  animate?: boolean
+  animationDelay?: number
 }
 
 export function GridBackground ({
@@ -164,7 +168,10 @@ export function GridBackground ({
   // Outer border properties
   showOuterBorder = true,
   outerBorderWidth = 1,
-  outerBorderStyle = 'dotted'
+  outerBorderStyle = 'dotted',
+  // Animation properties
+  animate = true,
+  animationDelay = 0
 }: GridBackgroundProps) {
   // Determine grid lines based on density
   const gridLinesMap = {
@@ -215,15 +222,93 @@ export function GridBackground ({
     return () => window.removeEventListener('resize', updateGridLines)
   }, [gridDensity])
 
+  // Animation variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        duration: 0.5,
+        delay: animationDelay,
+        when: 'beforeChildren',
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const gridLinesVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.7,
+        staggerChildren: 0.03
+      }
+    }
+  }
+
+  const lineVariants: Variants = {
+    hidden: { scaleX: 0, scaleY: 0, opacity: 0 },
+    visible: { 
+      scaleX: 1, 
+      scaleY: 1, 
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  }
+
+  const cornerVariants: Variants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        duration: 0.3, 
+        delay: 0.5 
+      }
+    }
+  }
+
+  const gradientVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { 
+      opacity: 0.6, 
+      scale: 1,
+      transition: { 
+        duration: 0.8, 
+        delay: 0.3 
+      }
+    }
+  }
+
+  const contentVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5, 
+        delay: 0.2 
+      }
+    }
+  }
+
   return (
-    <div
+    <motion.div
       ref={containerRef}
       className={`relative h-full w-full ${outerBorderClass} ${className} overflow-hidden z-0`}
       style={outerBorderStyles}
+      initial={animate ? 'hidden' : 'visible'}
+      animate="visible"
+      variants={containerVariants}
     >
       {/* Grid lines */}
       {showGridLines && (
-        <div className='absolute inset-0 pointer-events-none'>
+        <motion.div 
+          className='absolute inset-0 pointer-events-none'
+          variants={gridLinesVariants}
+        >
           {/* Vertical lines */}
           {Array.from({ length: gridLines }).map((_, i) => {
             // Skip first and last lines if hideOuterGridLines is true
@@ -231,11 +316,13 @@ export function GridBackground ({
               return null
             }
             return (
-              <div
+              <motion.div
                 key={`v-${i}`}
                 className={`absolute h-full left-0 ${
                   gridLineWidth === 1 ? 'w-px' : ''
                 } bg-border/30`}
+                variants={lineVariants}
+                custom={i}
                 style={{
                   left: `${(i / (gridLines - 1)) * 100}%`,
                   ...(gridLineWidth !== 1
@@ -265,11 +352,13 @@ export function GridBackground ({
               return null
             }
             return (
-              <div
+              <motion.div
                 key={`h-${i}`}
                 className={`absolute w-full top-0 ${
                   gridLineWidth === 1 ? 'h-px' : ''
                 } bg-border/30`}
+                variants={lineVariants}
+                custom={i}
                 style={{
                   top: `${(i / (totalLines - 1)) * 100}%`,
                   ...(gridLineWidth !== 1
@@ -291,24 +380,42 @@ export function GridBackground ({
           {/* Corner elements */}
           {showCorners && (
             <>
-              <div className='absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary' />
-              <div className='absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary' />
-              <div className='absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary' />
-              <div className='absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary' />
+              <motion.div 
+                className='absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary' 
+                variants={cornerVariants}
+              />
+              <motion.div 
+                className='absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary' 
+                variants={cornerVariants}
+              />
+              <motion.div 
+                className='absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary' 
+                variants={cornerVariants}
+              />
+              <motion.div 
+                className='absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary' 
+                variants={cornerVariants}
+              />
             </>
           )}
-        </div>
+        </motion.div>
       )}
 
       {/* Gradient background effect */}
       {showGradient && (
-        <div className='absolute -z-10 h-[50%] w-[50%] rounded-full blur-[100px] bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-orange-500/20 opacity-60' />
+        <motion.div 
+          className='absolute -z-10 h-[50%] w-[50%] rounded-full blur-[100px] bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-orange-500/20' 
+          variants={gradientVariants}
+        />
       )}
 
       {/* Content */}
-      <div className='h-full w-full flex-center min-h-full relative'>
+      <motion.div 
+        className='h-full w-full flex-center min-h-full relative'
+        variants={contentVariants}
+      >
         {children}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
