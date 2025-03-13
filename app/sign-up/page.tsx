@@ -45,7 +45,6 @@ export default async function SignUpPage () {
         image
       }
     })
-
     redirect('/dashboard?success=true')
   }
 

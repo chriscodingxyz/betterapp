@@ -18,7 +18,7 @@ export default function SignOutButton () {
       className='w-full flex items-center cursor-pointer'
       onClick={() => {
         signOut()
-        router.push('/sign-up')
+        router.push('/sign-in')
       }}
     >
       Sign Out
