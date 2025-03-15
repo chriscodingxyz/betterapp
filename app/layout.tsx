@@ -11,9 +11,10 @@ import './globals.css'
 import ViewportIndicator from '@/components/ViewportIndicator'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from 'sonner'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import SonnerWrapper from '@/components/SonnerWrapper'
 
 const silkscreen = Silkscreen({
   variable: '--font-silkscreen',
@@ -67,10 +68,12 @@ export default function RootLayout ({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <div className='flex-1'>{children}</div>
-          <Footer />
-          {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
+          <SonnerWrapper>
+            <Header />
+            <div className='flex-1 container max-w-5xl'>{children}</div>
+            <Footer />
+            {process.env.NODE_ENV === 'development' && <ViewportIndicator />}
+          </SonnerWrapper>
           <Toaster richColors />
         </ThemeProvider>
       </body>

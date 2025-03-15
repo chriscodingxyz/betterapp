@@ -1,27 +1,19 @@
 'use client'
 
-import React from 'react'
-import { signOut, useSession } from '@/lib/auth-client'
-import { useRouter } from 'next/navigation'
+import { authClient } from '@/lib/auth-client'
+import { Button } from './ui/button'
 
 export default function SignOutButton () {
-  const router = useRouter()
-  const response = useSession()
-  const { data } = response
-  // const session = data?.session
-  // const user = data?.user
-
-  console.log(data)
-
   return (
-    <div
+    <Button
       className='w-full flex items-center cursor-pointer'
-      onClick={() => {
-        signOut()
-        router.push('/sign-in')
+      onClick={async () => {
+        await authClient.signOut() // Clear the session cookie
+        // router.push or redirect will not work properly, displaying the correct UI after sign out
+        window.location.href = '/sign-in' // Force full page reload (this ensures new session check)
       }}
     >
       Sign Out
-    </div>
+    </Button>
   )
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useSession } from '@/lib/auth-client'
+import { authClient } from '@/lib/auth-client'
 import { Session, User } from 'better-auth'
 import { BetterFetchError } from 'better-auth/react'
 import React from 'react'
@@ -15,7 +15,7 @@ export default function NormalComponent () {
     isPending: boolean
     error: BetterFetchError | null
     refetch: () => void
-  } = useSession()
+  } = authClient.useSession()
 
   return (
     <div className='border border-blue-500'>
