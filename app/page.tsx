@@ -9,6 +9,7 @@ import { GridBackground } from '@/components/GridBackground'
 import TechIcons from '@/components/TechIcons'
 // import Image from 'next/image'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Home () {
   // revalidate every 7 minutes
@@ -95,59 +96,61 @@ export default function Home () {
   }
 
   return (
-    <div className='min-h-[calc(100vh-40px)] py-12'>
-      <div className='container max-w-xl h-full flex-center z-10 relative'>
-        <GridBackground
-          className='absolute inset-0'
-          gridLineWidth={1}
-          gridLineStyle='solid'
-          showOuterBorder={true}
-          outerBorderWidth={1}
-          outerBorderStyle='dotted'
-          hideOuterGridLines={true}
-          animate={true}
-          animationDelay={0.1}
-        >
-          <motion.div
-            className='flex flex-col items-center gap-4 py-12 px-1'
-            initial='hidden'
-            animate='visible'
+    <>
+      {/* Main section full screen */}
+      <div className='min-h-[calc(100vh-40px)] py-12 flex-center-col'>
+        <div className='container max-w-xl h-full flex-center z-10 relative'>
+          <GridBackground
+            className='absolute inset-0'
+            gridLineWidth={1}
+            gridLineStyle='solid'
+            showOuterBorder={true}
+            outerBorderWidth={1}
+            outerBorderStyle='dotted'
+            hideOuterGridLines={true}
+            animate={true}
+            animationDelay={0.1}
           >
-            <div className='flex flex-col items-center gap-0'>
-              <div className='flex flex-col items-center gap-2 mb-10'>
-                <motion.div
-                  className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'
-                  variants={titleVariants}
-                >
-                  Roll your own <MetallicText>SaaS</MetallicText> in minutes!
+            <motion.div
+              className='flex flex-col items-center gap-4 py-12 px-1'
+              initial='hidden'
+              animate='visible'
+            >
+              <div className='flex flex-col items-center gap-0'>
+                <div className='flex flex-col items-center gap-2 mb-10'>
+                  <motion.div
+                    className='text-6xl font-bold text-balance tracking-tighter leading-none text-center max-w-3xl'
+                    variants={titleVariants}
+                  >
+                    Roll your own <MetallicText>SaaS</MetallicText> in minutes!
+                  </motion.div>
+                  <motion.div
+                    className='text-xl text-muted-foreground'
+                    variants={subtitleVariants}
+                  >
+                    Launch faster with confidence
+                  </motion.div>
+                </div>
+                <motion.div variants={logoVariants}>
+                  <ThemeLogo />
                 </motion.div>
-                <motion.div
-                  className='text-xl text-muted-foreground'
-                  variants={subtitleVariants}
-                >
-                  Launch faster with confidence
-                </motion.div>
-              </div>
-              <motion.div variants={logoVariants}>
-                <ThemeLogo />
-              </motion.div>
-              <div className='flex flex-col items-center gap-8 border-primary z-10 -mt-2'>
-                {/* <SetupChecks />
+                <div className='flex flex-col items-center gap-8 border-primary z-10 -mt-2'>
+                  {/* <SetupChecks />
               <RandomFact fact={rawText} /> */}
-                <motion.div variants={buttonVariants} whileHover='hover'>
-                  <ShadowButton size='xs'>Initiate Checklist</ShadowButton>
-                </motion.div>
-                <motion.div variants={techIconsVariants}>
-                  <TechIcons />
-                </motion.div>
+                  <motion.div variants={buttonVariants} whileHover='hover'>
+                    <ShadowButton size='xs'>Initiate Checklist</ShadowButton>
+                  </motion.div>
+                  <motion.div variants={techIconsVariants}>
+                    <TechIcons />
+                  </motion.div>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        </GridBackground>
-      </div>
+            </motion.div>
+          </GridBackground>
+        </div>
 
-      {/* Full-width features section */}
-      {/* <div className='container max-w-5xl mt-24 mb-16 z-10 relative'>
+        {/* Full-width features section */}
+        {/* <div className='container max-w-5xl mt-24 mb-16 z-10 relative'>
         <GridBackground
           className='absolute inset-0'
           gridLineWidth={1}
@@ -186,14 +189,17 @@ export default function Home () {
         </GridBackground>
       </div> */}
 
+        {/* Footer */}
+      </div>
+      {/* Middle bit */}
       <div className='py-12 flex-center'>
-        {/* <Image
+        <Image
           src='/cryptoadz.gif'
           alt='Logo'
           width={150}
           height={150}
-          className='self-center border border-black'
-        /> */}
+          className='self-center'
+        />
       </div>
 
       {/* Two-column grid section */}
@@ -244,8 +250,6 @@ export default function Home () {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-    </div>
+    </>
   )
 }

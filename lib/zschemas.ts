@@ -14,4 +14,4 @@ export const zTodoSchema = z.object({
   title: z.string().min(1, 'min of 1 character').max(10, 'max of 10 characters')
 })
 
-export type zTodoSchemaType = z.infer<typeof zTodoSchema>
+export type ZTodoSchemaType = z.infer<typeof zTodoSchema>
