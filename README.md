@@ -57,3 +57,7 @@ bunx --bun shadcn@latest add button
 bun add @supabase/supabase-js drizzle-orm postgres
 bun add -d drizzle-kit
 ```
+
+March 23rd, 2025 - added membership stuff to user schemas + extending session data [bunx drizzle-kit generate, bunx drizzle-kit migrate]
+
+March 25th, 2025 - added tanstack form handling [bun add @tanstack/react-form]

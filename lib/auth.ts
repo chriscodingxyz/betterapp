@@ -22,6 +22,13 @@ export const auth = betterAuth({
       maxAge: 5 * 60 // Cache duration in seconds
     }
   },
+  user: {
+    additionalFields: {
+      membershipType: { type: 'string' },
+      membershipStartDate: { type: 'date' },
+      membershipEndDate: { type: 'date' }
+    }
+  },
   advanced: {
     ipAddress: {
       ipAddressHeaders: ['x-client-ip', 'x-forwarded-for'],

@@ -1,13 +1,18 @@
 'use client'
 
-import React, { useActionState, useEffect } from 'react'
+import React, { useActionState, useEffect, useRef } from 'react'
 import { addTodoAction } from './actions'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { zTodoSchema } from '@/lib/zschemas'
+// Import our custom hook as an example (commented out by default)
+// import { useFormAction } from '@/lib/hooks/form-action'
 
 export default function ActionsForm () {
+  // 🚀 **Form Reset**: Add ref to access form element
+  const formRef = useRef<HTMLFormElement>(null)
+
   const [state, formAction, isPending] = useActionState(addTodoAction, {
     success: '',
     error: undefined
@@ -19,7 +24,8 @@ export default function ActionsForm () {
   useEffect(() => {
     if (state.success) {
       toast.success(state.success)
-      // setTitle('') // Reset the input on success
+      // 🚀 Reset form using ref instead of controlled state
+      formRef.current?.reset()
     }
     if (state.error) {
       toast.error(state.error)
@@ -44,7 +50,7 @@ export default function ActionsForm () {
   return (
     <div>
       {/* <div className='text-sm border '>{state.success || state.error}</div> */}
-      <form action={validateForm} className='space-y-4'>
+      <form ref={formRef} action={validateForm} className='space-y-4'>
         <Input
           type='text'
           name='title'
@@ -57,4 +63,29 @@ export default function ActionsForm () {
       </form>
     </div>
   )
-}
+} /*}
+
+// Example of how to use the custom hook for a more complex form
+/*
+function ExampleComplexForm() {
+  // 🚀 **Reusable Client Hook**: Using our custom hook for form handling
+  const { 
+    state, 
+    isPending, 
+    formRef, 
+    validateAndSubmit 
+  } = useFormAction(addTodoAction, zTodoSchema);
+
+  return (
+    <div>
+      <form ref={formRef} action={validateAndSubmit} className='space-y-4'>
+        <Input type='text' name='title' />
+        {/* Add more form fields here for complex forms */
+//         <Button type='submit' disabled={isPending}>
+//           {isPending ? 'Processing...' : 'Submit'}
+//         </Button>
+//       </form>
+//     </div>
+//   );
+// }
+// */

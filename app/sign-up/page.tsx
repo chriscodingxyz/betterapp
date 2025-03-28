@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import Link from 'next/link'
 import { GridBackground } from '@/components/GridBackground'
+import AvatarUploadForm from './AvatarUploadForm'
 
 export default async function SignUpPage () {
   const response = await auth.api.getSession({
@@ -153,6 +154,7 @@ export default async function SignUpPage () {
                   Create an account
                 </Button>
               </form>
+              <AvatarUploadForm />
             </div>
 
             <div className='text-center text-sm mt-6'>

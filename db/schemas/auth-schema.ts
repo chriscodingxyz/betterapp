@@ -7,7 +7,11 @@ export const user = pgTable('user', {
   emailVerified: boolean('email_verified').notNull(),
   image: text('image'),
   createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull()
+  updatedAt: timestamp('updated_at').notNull(),
+  // New membership fields
+  membershipType: text('membership_type').notNull().default('basic'), // e.g., 'basic', 'premium'
+  membershipStartDate: timestamp('membership_start_date'),
+  membershipEndDate: timestamp('membership_end_date')
 })
 
 export const session = pgTable('session', {

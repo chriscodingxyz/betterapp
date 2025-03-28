@@ -7,7 +7,7 @@ export const zSignInSchema = z.object({
 })
 
 // Type derived from the Zod schema
-export type SignInZod = z.infer<typeof zSignInSchema>
+export type zSignInSchemaType = z.infer<typeof zSignInSchema>
 
 // simple todo
 export const zTodoSchema = z.object({

@@ -103,12 +103,14 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { ThemeToggle } from './theme/ThemeToggle'
 import { Button } from './ui/button'
-import { Session, User } from 'better-auth'
+import { Session } from 'better-auth'
+import { BetterAuthUser } from '@/lib/types'
+import { cn } from '@/lib/utils'
 
 export default function AuthPortal ({
   serverSession
 }: {
-  serverSession: { session: Session; user: User } | null
+  serverSession: { session: Session; user: BetterAuthUser } | null
 }) {
   const session = serverSession?.session
   const user = serverSession?.user
@@ -133,7 +135,12 @@ export default function AuthPortal ({
           <span className='hidden md:inline-block text-sm font-medium'>
             {user.name}
           </span>
-          <Avatar className='h-6 w-6'>
+          <Avatar
+            className={cn(
+              'h-6 w-6',
+              user.membershipType === 'premium' && 'border border-primary'
+            )}
+          >
             <AvatarImage
               src={user.image || ''}
               alt={user.name}

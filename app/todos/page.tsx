@@ -2,6 +2,8 @@ import React from 'react'
 import ActionsForm from './ActionsForm'
 import { db } from '@/db'
 import { todosTable } from '@/db/schemas/todos-schema'
+import { Button } from '@/components/ui/button'
+import { deleteTodosAction } from './actions'
 
 export default async function page () {
   const todos = await db.select().from(todosTable)
@@ -16,6 +18,9 @@ export default async function page () {
           <div key={todo.id}>{todo.title}</div>
         ))}
       </div>
+      <Button onClick={deleteTodosAction} variant='destructive'>
+        delete
+      </Button>
     </div>
   )
 }

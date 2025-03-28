@@ -5,7 +5,7 @@ import { useActionState, useEffect, startTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { zSignInSchema, SignInZod } from '@/lib/zschemas'
+import { zSignInSchema, zSignInSchemaType } from '@/lib/zschemas'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { signInAction } from './actions'
@@ -32,13 +32,13 @@ export default function SignInForm () {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<SignInZod>({
+  } = useForm<zSignInSchemaType>({
     resolver: zodResolver(zSignInSchema),
     mode: 'onSubmit',
     defaultValues: { email: '', password: '' }
   })
 
-  const onSubmit = handleSubmit(async (data: SignInZod) => {
+  const onSubmit = handleSubmit(async (data: zSignInSchemaType) => {
     const formData = new FormData()
     formData.append('email', data.email)
     formData.append('password', data.password)
