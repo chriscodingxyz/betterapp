@@ -36,14 +36,22 @@ export default async function SignUpPage () {
     const lastName = formData.get('lastName') as string
     const name = `${firstName} ${lastName}`.trim()
     const image =
-      (formData.get('image') as string) || 'http://localhost:3000/avatar.png'
+      (formData.get('image') as string) ||
+      'https://cherrydubtemplate.vercel.app/avatar.png'
 
+    // I'm thinking of getting rid of the avatar image thing in the sign up
+    // As I may do it using the user's ID to add into the image name
     await auth.api.signUpEmail({
       body: {
         email,
         password,
         name,
-        image
+        image,
+        membershipType: 'basic',
+        membershipStartDate: new Date()
+        // Omit membershipEndDate entirely, let DB handle default NULL
+        // The reason we will not include this is for now we onlyhandle basic memberships
+        // Which should not expire ever
       }
     })
     redirect('/dashboard?success=true')

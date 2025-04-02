@@ -25,8 +25,8 @@ export const auth = betterAuth({
   user: {
     additionalFields: {
       membershipType: { type: 'string' },
-      membershipStartDate: { type: 'date' },
-      membershipEndDate: { type: 'date' }
+      membershipStartDate: { type: 'date' }
+      // Remove membershipEndDate from here, as it's in the base Drizzle schema
     }
   },
   advanced: {
